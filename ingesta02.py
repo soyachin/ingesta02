@@ -17,3 +17,11 @@ df = pd.read_sql(query, c)
 file = 'dump.csv'
 data_frame.to_csv(file, index=False)
 print(f"Exportado a '{file}' !")
+
+ficheroUpload = file
+nombreBucket = "msc-output-01"
+
+s3 = boto3.client('s3')
+response = s3.upload_file(ficheroUpload, nombreBucket, ficheroUpload)
+
+print("Ingesta completada")
